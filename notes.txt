@@ -1,0 +1,22 @@
+Create Project (CAP) - add config(SAPHANA, MTA, Basic elements)
+Create MTA module from template (right click mta.yaml) - APPROUTER
+Create MTA module from template (right click mta.yaml) - SAPFIORI (BasicUI-Freestyle)
+Build MTA Project (right click mta.yaml)
+Open mta_archives
+Right click mtar file
+Delpoy MTA archive
+Sign in cloud foundry
+
+Notes:
+Controller name must be  same as view name
+To create a function:
+Define function inside Controller
+Define UI (ex:"sap/m/MessageToast")
+other UI:
+"sap/ui/model/json/JSONModel"
+"sap/ui/model/resource/RecourceModel"
+
+Define MessageToast
+    function (Controller, MessageToast) {
+        "use strict";
+    }
