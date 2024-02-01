@@ -6,6 +6,8 @@
 			<pages>
 				<Page title="{i18n>homePageTitle}">
 					<content>
+                        <!-- <mvc:XMLView 
+							viewName="testproject.testproject.view.Exercise1Panel"/>						 -->
                         <mvc:XMLView 
 							viewName="testproject.testproject.view.HelloPanel"/>
 						<mvc:XMLView 

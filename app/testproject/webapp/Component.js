@@ -35,6 +35,18 @@ sap.ui.define([
                 const oModel = new JSONModel(oData);
                 this.setModel(oModel);
 
+
+                // //Exercise1 Model
+                // const newOData = {
+                //     exerciseData : {
+                //         name : "Test",
+                //         country : "Test2"
+                //     }
+                // };
+
+                // const newOModel = new JSONModel(newOData);
+                // this.setModel(newOModel);
+
                 // enable routing
                 this.getRouter().initialize();
 

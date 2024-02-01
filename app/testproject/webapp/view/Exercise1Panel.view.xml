@@ -1,0 +1,30 @@
+<mvc:View
+   controllerName="testproject.testproject.controller.ExercisePanel1"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc">
+   <Panel
+      headerText="Exercise1"
+      class="sapUiResponsiveMargin"
+      width="auto">
+      <content>
+         <Button
+         icon="sap-icon://world"
+         id="exercise1Button"
+         text="{i18n>openExercise1ButtonText}"
+         press=".onOpenDialog"
+         class="sapUiSmallMarginEnd"/>
+         <Button
+            text="{i18n>showExercise1}"
+            press=".onShow"
+            class="myCustomButton"/>
+         <Input
+            value="{/exerciseData/name}"
+            valueLiveUpdate="true"
+            width="30%"/>
+         <Input
+            value="{/exerciseData/country}"
+            valueLiveUpdate="true"
+            width="30%"/>
+      </content>
+   </Panel>
+</mvc:View>
