@@ -16,12 +16,11 @@
             "toolsId": "2cb16b36-0364-4d76-a230-9f901dc03e2b"
         },
         "dataSources": {
-            "mainService": {
-                "uri": "odata/v4/catalog/",
+            "invoiceRemote": {
+                "uri": "V2/Northwind/Northwind.svc/",
                 "type": "OData",
                 "settings": {
-                    "annotations": [],
-                    "odataVersion": "4.0"
+                    "odataVersion": "2.0"
                 }
             }
         }
@@ -65,11 +64,19 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "testproject.testproject.i18n.i18n"
+                    "bundleName": "testproject.testproject.i18n.i18n",
+                    "supportedLocales": [
+                        ""
+                    ],
+                    "fallbackLocale": ""
                 }
             },
+            "invoice": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "Invoices.json"
+            },
             "": {
-                "dataSource": "mainService",
+                "dataSource": "invoiceRemote",
                 "preload": true,
                 "settings": {
                     "synchronizationMode": "None",
@@ -103,6 +110,16 @@
                     "target": [
                         "TargetHomepage"
                     ]
+                },
+                {
+                    "pattern": "detail/{invoicePath}",
+                    "name": "detail",
+                    "target": "detail"
+                },
+                {
+                    "pattern": "detail/otherdetail/{invoicePath}",
+                    "name": "otherdetail",
+                    "target": "otherdetail"
                 }
             ],
             "targets": {
@@ -112,6 +129,20 @@
                     "clearControlAggregation": false,
                     "viewId": "Homepage",
                     "viewName": "Homepage"
+                },
+                "detail": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "detail",
+                    "viewName": "Detail"
+                },
+                "otherdetail": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "otherdetail",
+                    "viewName": "OtherDetail"
                 }
             }
         },
@@ -121,6 +152,10 @@
             "async": true,
             "id": "App"
         }
+    },
+    "contentDensities": {
+        "compact": true,
+        "cozy": true
     },
     "sap.cloud": {
         "public": true,

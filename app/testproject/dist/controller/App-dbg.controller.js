@@ -8,6 +8,8 @@ sap.ui.define(
       return BaseController.extend("testproject.testproject.controller.App", {
         onInit: function() {
         }
+
+      
       });
     }
   );

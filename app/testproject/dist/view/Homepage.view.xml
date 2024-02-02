@@ -1,7 +1,20 @@
 <mvc:View controllerName="testproject.testproject.controller.Homepage"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+    <Shell>
+		<App class="myAppDemoWT">
+			<pages>
+				<Page title="{i18n>homePageTitle}">
+					<content>
+                        <!-- <mvc:XMLView 
+							viewName="testproject.testproject.view.Exercise1Panel"/>						 -->
+                        <mvc:XMLView 
+							viewName="testproject.testproject.view.HelloPanel"/>
+						<mvc:XMLView 
+							viewName="testproject.testproject.view.InvoiceList"/>
+					</content>
+				</Page>
+			</pages>
+		</App>
+    </Shell>
 </mvc:View>

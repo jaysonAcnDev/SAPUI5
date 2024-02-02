@@ -1,1 +1,1 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"],function(e){"use strict";return e.extend("testproject.testproject.controller.Homepage",{onInit:function(){}})});
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(e){"use strict";return e.extend("testproject.testproject.controller.Homepage",{onInit(){this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass())}})});

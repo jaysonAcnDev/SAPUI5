@@ -152,8 +152,13 @@
             "id": "App"
         }
     },
+    "contentDensities": {
+        "compact": true,
+        "cozy": true
+      },
     "sap.cloud": {
         "public": true,
         "service": "SapUITutorial"
     }
+  
 }

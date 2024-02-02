@@ -6,10 +6,9 @@ sap.ui.define([
      */
     function (Controller) {
         "use strict";
-
         return Controller.extend("testproject.testproject.controller.Homepage", {
-            onInit: function () {
-
+            onInit() {
+                this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
             }
         });
     });

@@ -4,4 +4,6 @@
     xmlns="sap.m">
     <App id="app">
     </App>
+    <!-- <Text id="text" text= "Test"/> -->
+    <!-- <Button id="btn1" text="Press me" press="onPressBtn"/> -->
 </mvc:View>
