@@ -15,16 +15,15 @@
             "version": "1.12.2",
             "toolsId": "2cb16b36-0364-4d76-a230-9f901dc03e2b"
         },
-        "dataSources": {
-            "mainService": {
-                "uri": "/odata/v4/catalog/",
-                "type": "OData",
-                "settings": {
-                    "annotations": [],
-                    "odataVersion": "4.0"
-                }
-            }
-        }
+		"dataSources": {
+			"invoiceRemote": {
+				"uri": "V2/Northwind/Northwind.svc/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+		}
     },
     "sap.ui": {
         "technology": "UI5",
@@ -75,7 +74,7 @@
                 "uri": "Invoices.json"
               },
             "": {
-                "dataSource": "mainService",
+                "dataSource": "invoiceRemote",
                 "preload": true,
                 "settings": {
                     "synchronizationMode": "None",
@@ -109,6 +108,17 @@
                     "target": [
                         "TargetHomepage"
                     ]
+                },
+                {
+                    "pattern": "detail/{invoicePath}",
+                    "name": "detail",
+                    "target": "detail"
+                }
+                ,
+                {
+                    "pattern": "detail/otherdetail/{invoicePath}",
+                    "name": "otherdetail",
+                    "target": "otherdetail"
                 }
             ],
             "targets": {
@@ -116,9 +126,23 @@
                     "viewType": "XML",
                     "transition": "slide",
                     "clearControlAggregation": false,
-                    "viewId": "Homepage",
+                    "viewId": "Homepage", 
                     "viewName": "Homepage"
-                }
+                },
+                  "detail": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "detail",
+                    "viewName": "Detail"
+                  },
+                  "otherdetail": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "otherdetail",
+                    "viewName": "OtherDetail"
+                  }
             }
         },
         "rootView": {
