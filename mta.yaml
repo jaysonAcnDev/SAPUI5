@@ -3,122 +3,123 @@ ID: SAPUI5bootcamp
 description: A simple CAP project.
 version: 1.0.0
 modules:
-- name: SAPUI5bootcamp-srv
-  type: nodejs
-  path: gen/srv
-  requires:
-  - name: SAPUI5bootcamp-db
-  provides:
-  - name: srv-api
-    properties:
-      srv-url: ${default-url}
-  parameters:
-    buildpack: nodejs_buildpack
-  build-parameters:
-    builder: npm
-- name: SAPUI5bootcamp-db-deployer
-  type: hdb
-  path: gen/db
-  requires:
-  - name: SAPUI5bootcamp-db
-  parameters:
-    buildpack: nodejs_buildpack
-- name: SAPUI5bootcamp-destination-content
-  type: com.sap.application.content
-  requires:
-  - name: SAPUI5bootcamp-destination-service
-    parameters:
-      content-target: true
-  - name: SAPUI5bootcamp_html_repo_host
-    parameters:
-      service-key:
-        name: SAPUI5bootcamp_html_repo_host-key
-  - name: uaa_SAPUI5bootcamp
-    parameters:
-      service-key:
-        name: uaa_SAPUI5bootcamp-key
-  parameters:
-    content:
-      instance:
-        destinations:
-        - Name: SapUITutorial_SAPUI5bootcamp_html_repo_host
-          ServiceInstanceName: SAPUI5bootcamp-html5-app-host-service
-          ServiceKeyName: SAPUI5bootcamp_html_repo_host-key
-          sap.cloud.service: SapUITutorial
-        - Authentication: OAuth2UserTokenExchange
-          Name: SapUITutorial_uaa_SAPUI5bootcamp
-          ServiceInstanceName: SAPUI5bootcamp-xsuaa-service
-          ServiceKeyName: uaa_SAPUI5bootcamp-key
-          sap.cloud.service: SapUITutorial
-        existing_destinations_policy: ignore
-  build-parameters:
-    no-source: true
-- name: SAPUI5bootcamp-app-content
-  type: com.sap.application.content
-  path: .
-  requires:
-  - name: SAPUI5bootcamp_html_repo_host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
+  - name: SAPUI5bootcamp-srv
+    type: nodejs
+    path: gen/srv
     requires:
-    - artifacts:
-      - testprojecttestproject.zip
-      name: testprojecttestproject
-      target-path: resources/
-- name: testprojecttestproject
-  type: html5
-  path: app/testproject
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-resources:
-- name: SAPUI5bootcamp-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    service: hana
-    service-plan: hdi-shared
-- name: SAPUI5bootcamp-destination-service
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: true
-      init_data:
+      - name: SAPUI5bootcamp-db
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    parameters:
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm
+  - name: SAPUI5bootcamp-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: SAPUI5bootcamp-db
+    parameters:
+      buildpack: nodejs_buildpack
+  - name: SAPUI5bootcamp-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: SAPUI5bootcamp-destination-service
+        parameters:
+          content-target: true
+      - name: SAPUI5bootcamp_html_repo_host
+        parameters:
+          service-key:
+            name: SAPUI5bootcamp_html_repo_host-key
+      - name: uaa_SAPUI5bootcamp
+        parameters:
+          service-key:
+            name: uaa_SAPUI5bootcamp-key
+    parameters:
+      content:
         instance:
           destinations:
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          existing_destinations_policy: update
-      version: 1.0.0
-    service: destination
-    service-name: SAPUI5bootcamp-destination-service
-    service-plan: lite
-- name: SAPUI5bootcamp_html_repo_host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-name: SAPUI5bootcamp-html5-app-host-service
-    service-plan: app-host
-- name: uaa_SAPUI5bootcamp
-  type: org.cloudfoundry.managed-service
-  parameters:
-    path: ./xs-security.json
-    service: xsuaa
-    service-name: SAPUI5bootcamp-xsuaa-service
-    service-plan: application
+            - Name: SapUITutorial_SAPUI5bootcamp_html_repo_host
+              ServiceInstanceName: SAPUI5bootcamp-html5-app-host-service
+              ServiceKeyName: SAPUI5bootcamp_html_repo_host-key
+              sap.cloud.service: SapUITutorial
+            - Authentication: OAuth2UserTokenExchange
+              Name: SapUITutorial_uaa_SAPUI5bootcamp
+              ServiceInstanceName: SAPUI5bootcamp-xsuaa-service
+              ServiceKeyName: uaa_SAPUI5bootcamp-key
+              sap.cloud.service: SapUITutorial
+          existing_destinations_policy: ignore
+    build-parameters:
+      no-source: true
+  - name: SAPUI5bootcamp-app-content
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: SAPUI5bootcamp_html_repo_host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - testprojecttestproject.zip
+          name: testprojecttestproject
+          target-path: resources/
+  - name: testprojecttestproject
+    type: html5
+    path: app/testproject
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+resources:
+  - name: SAPUI5bootcamp-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: SAPUI5bootcamp-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://ui5.sap.com
+            existing_destinations_policy: update
+        version: 1.0.0
+      service: destination
+      service-name: SAPUI5bootcamp-destination-service
+      service-plan: lite
+  - name: SAPUI5bootcamp_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: SAPUI5bootcamp-html5-app-host-service
+      service-plan: app-host
+  - name: uaa_SAPUI5bootcamp
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: SAPUI5bootcamp-xsuaa-service
+      service-plan: application
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-  - builder: custom
-    commands:
-    - npx cds build --production
+    - builder: custom
+      commands:
+        - npx cds build --production
