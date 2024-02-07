@@ -8,6 +8,9 @@
   "dependencies": {
     "@sap/cds": "^7",
     "@sap/cds-hana": "^2",
+    "@sap/cloud-sdk-core": "^1.17.2",
+    "@sap/cloud-sdk-vdm": "^1.21.0",
+    "axios": "^1.6.7",
     "express": "^4"
   },
   "devDependencies": {

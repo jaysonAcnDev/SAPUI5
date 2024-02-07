@@ -7,7 +7,7 @@ modules:
     type: nodejs
     path: gen/srv
     requires:
-      - name: SAPUI5bootcamp-db
+      - name: bootcamp-hdi-service
     provides:
       - name: srv-api
         properties:
@@ -16,11 +16,11 @@ modules:
       buildpack: nodejs_buildpack
     build-parameters:
       builder: npm
-  - name: SAPUI5bootcamp-db-deployer
+  - name: bootcamp-hdi-service-deployer
     type: hdb
     path: gen/db
     requires:
-      - name: SAPUI5bootcamp-db
+      - name: bootcamp-hdi-service
     parameters:
       buildpack: nodejs_buildpack
   - name: SAPUI5bootcamp-destination-content
@@ -79,7 +79,7 @@ modules:
       supported-platforms:
         []
 resources:
-  - name: SAPUI5bootcamp-db
+  - name: bootcamp-hdi-service
     type: com.sap.xs.hdi-container
     parameters:
       service: hana

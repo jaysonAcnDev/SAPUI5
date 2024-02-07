@@ -20,3 +20,12 @@ Define MessageToast
     function (Controller, MessageToast) {
         "use strict";
     }
+
+
+Views - XML Files (User interface)
+Controller - Functions and data handling
+Model - database
+Fragment - Another layer of UI (Example Dialog, no contoller)
+Sap Fiori -UX for sap
+SapUI - HTML Framework
+User expi - what the users experiencing
